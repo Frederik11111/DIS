@@ -1,3 +1,26 @@
-volumes:
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: dis_db
+    ports:
+      - "5432:5432"
+    volumes:
       - ./scripts:/docker-entrypoint-initdb.d
       - ./players_22.csv:/tmp/players_22.csv
+
+  web:
+    build: .
+    ports:
+      - "8501:8501"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: admin
+      DB_PASSWORD: password123
+      DB_NAME: dis_db
