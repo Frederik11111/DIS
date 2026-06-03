@@ -1,2 +1,1 @@
-# DIS
-This is our project in Databases and information systems
+run: docker compose up --build
