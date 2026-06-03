@@ -1,4 +1,3 @@
--- Sletter tabellen hvis den allerede findes, så I nemt kan starte forfra
 DROP TABLE IF EXISTS players;
 
 CREATE TABLE players (
@@ -114,5 +113,4 @@ CREATE TABLE players (
     nation_flag_url TEXT
 );
 
--- Den magiske kommando der uploader jeres CSV til databasen
 COPY players FROM '/tmp/players_22.csv' DELIMITER ',' CSV HEADER;
