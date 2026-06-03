@@ -48,7 +48,7 @@ st.write("Search for specific players or test your luck by opening database pack
 st.divider()
 
 # REGEX SEARCH
-st.subheader("🔍 Advanced Player Search (Regex)")
+st.subheader("🔍 Advanced Player Search")
 st.write("Use Regular Expressions to find players. Try `^Messi` (starts with) or `(son|sen)$` (ends with son/sen).")
 
 regex_input = st.text_input("Enter Regex pattern for player name:")
@@ -78,10 +78,10 @@ btn_col1, btn_col2, btn_col3 = st.columns(3)
 selected_pack = None
 
 with btn_col1:
-    if st.button("🟫 Open Bronze Pack", use_container_width=True):
+    if st.button("🟫 Open Bronze Pack", type="primary", use_container_width=True):
         selected_pack = "Bronze"
 with btn_col2:
-    if st.button("⬜ Open Silver Pack", use_container_width=True):
+    if st.button("⬜ Open Silver Pack", type="primary", use_container_width=True):
         selected_pack = "Silver"
 with btn_col3:
     if st.button("🟨 Open Gold Pack", type="primary", use_container_width=True):
@@ -93,7 +93,7 @@ if selected_pack:
     
     if df_pack is not None and not df_pack.empty:
         highest_rating = df_pack['rating'].max()
-        if highest_rating >= 85:
+        if highest_rating >= 90:
             st.balloons()
             legend_name = df_pack[df_pack['rating'] == highest_rating]['name'].iloc[0]
             st.success(f"🌟 **WALKOUT!** You packed a LEGEND! Welcome to the club, **{legend_name}** ({highest_rating} OVR) 🌟")
@@ -104,7 +104,7 @@ if selected_pack:
         
         for index, row in df_pack.iterrows():
             with all_columns[index]: 
-                is_legend = "🌟" if row['rating'] >= 85 else ""
+                is_legend = "🌟" if row['rating'] >= 90 else ""
                 st.markdown(f"#### {is_legend} {row['name']}")
                 
                 face_img = row['face_image'] if pd.notna(row['face_image']) else ""

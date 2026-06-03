@@ -121,7 +121,7 @@ COPY players FROM '/tmp/players_22.csv' DELIMITER ',' CSV HEADER;
 CREATE OR REPLACE VIEW clean_players AS
 SELECT 
     sofifa_id AS player_id,
-    short_name AS name,
+    long_name AS name,
     overall AS rating,
     value_eur AS value_eur,
     club_name AS club,
