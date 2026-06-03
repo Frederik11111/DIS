@@ -1,0 +1,3 @@
+volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - ./players_22.csv:/tmp/players_22.csv
