@@ -1,4 +1,7 @@
 DROP TABLE IF EXISTS players;
+DROP TABLE IF EXISTS clean_players;
+
+
 
 CREATE TABLE players (
     sofifa_id INT PRIMARY KEY,
@@ -114,3 +117,16 @@ CREATE TABLE players (
 );
 
 COPY players FROM '/tmp/players_22.csv' DELIMITER ',' CSV HEADER;
+
+CREATE OR REPLACE VIEW clean_players AS
+SELECT 
+    sofifa_id AS player_id,
+    short_name AS name,
+    overall AS rating,
+    value_eur AS value_eur,
+    club_name AS club,
+    nationality_name AS nationality,
+    player_face_url AS face_image,
+    club_logo_url AS club_logo,
+    nation_flag_url AS flag_image
+FROM players;
